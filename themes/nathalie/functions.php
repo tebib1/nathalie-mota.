@@ -19,4 +19,18 @@ function enqueue_custom_scripts() {
 }
 add_action('wp_enqueue_scripts', 'enqueue_custom_scripts');
    
+function nathalie_get_icon_svg( $type, $direction ) {
+    $icons = array(
+        'ui' => array(
+            'arrow_left' => '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M15.41 7.41L10.83 12l4.58 4.59L14 18l-6-6 6-6z"/></svg>',
+            'arrow_right' => '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>',
+        ),
+    );
+
+    return $icons[ $type ][ $direction ] ?? '';
+}
+
+
 ?>
+
+
