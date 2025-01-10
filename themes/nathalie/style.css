@@ -1,8 +1,11 @@
+.body {
+    font-family: 'Space Mono', monospace;
+}
 .site-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
+    padding: 10px 80px;
 }
 
 .nav-menu {
@@ -20,8 +23,9 @@
 .nav-menu li a {
     text-decoration: none;
     color: #333;
-    font-weight: bold;
+    font-weight: normal;
     transition: color 0.3s ease;
+    text-transform: uppercase;
 }
 
 .nav-menu li a:hover {
@@ -37,6 +41,7 @@ display: flex;
     color: #fff;
     padding: 20px 0;
     text-align: center;
+    border-top: 1px solid black;
 }
 
 .site-footer .container {
@@ -61,8 +66,9 @@ display: flex;
 .footer-navigation ul li a {
     text-decoration: none;
     color:black;
-    font-weight: bold;
+    font-weight: normal;
     transition: color 0.3s ease;
+    text-transform: uppercase;
 }
 
 .footer-navigation ul li a:hover {
@@ -106,3 +112,402 @@ display: flex;
     font-size: 20px;
     cursor: pointer;
 }
+
+/* single photo */
+ .single-photo {
+            max-width: 100%;
+            height: auto;
+            
+        }
+.single_photo{
+    width: 563px;
+    height: 844px;
+    object-fit: cover;
+    padding-left: 100px;
+   }
+.alignement{
+    display:flex ;
+    gap: 56px;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+.align_fleche{
+    display: flex;
+    gap: 96px;
+}
+.bloc_photo{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid black; 
+    margin-left: 82px;
+    margin-right: 79px;
+
+}
+    .bloc_single{
+    display: flex;
+        justify-content: space-between;
+        margin: 32px;}
+
+
+        .single-photo-container {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+        }
+        
+        .photo-details {
+            flex: 1;
+            padding-right: 20px;
+            position: relative;
+    top:490px;
+    left: 65px;
+   
+        }
+        .bordure{
+            border-bottom: 1px solid black; 
+        }
+        .photo-details h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+            font-style: italic;
+            font-weight: 400;
+            width: 318px;
+            height: 116px;
+            font-size: 66px;
+            line-height: 58px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+        
+        .photo-details p {
+            font-weight: 400;
+            font-size: 1em;
+            margin: 5px 0;
+                text-transform: uppercase;
+                line-height: 1.8; /* Espacement entre les lignes */
+        margin-bottom: 10px;
+        }
+        .photo-details p strong{
+            font-weight: normal !important;
+        }
+        .contact-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #ddd;
+            text-decoration: none;
+            color: #333;
+            border: 1px solid #ccc;
+            width: 150px;
+            height: 30px;
+            text-align: center;
+           
+        }
+        
+        .photo-display {
+            flex: 1;
+        }
+        
+       
+        
+        .related-photos {
+            margin-top: 50px;
+            padding: 20px;
+            margin-left: 60px;
+            margin-right: 46px;
+        }
+        
+        .related-items {
+            display: flex;
+            gap: 20px;
+        }
+        .related-photos  h2 {
+            text-transform: uppercase;
+            font-weight: normal;
+        }
+        .related-item {
+            flex: 1;
+            text-align: center;
+        }
+        
+        .related-item img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+        
+        .hero{
+      width: 100%;
+      height: 100vh;
+display: flex;
+align-items: center;
+justify-content: center;
+color: white;
+text-align: center;
+
+        }
+        .hero h1 {
+        
+font-family: Space Mono;
+font-size: 96px;
+font-style: italic;
+font-weight: 700;
+line-height: 142.18px;
+text-align: left;
+text-underline-position: from-font;
+text-decoration-skip-ink: none;
+        }
+        /* partie catalogue page accueil */
+        .photos-grid {
+      display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
+    margin-left: 171px;
+    margin-right: 175px;
+    gap: 32px;
+        }
+        
+        .photos-grid .photo-item {
+            width: 564px;
+height: 495px;
+object-fit: cover;
+
+        }
+        
+        .photos-grid .photo-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .photos-grid .photo-item .photo-icons {
+            display: none;
+            position: absolute;
+    top: 6px;
+    right: 6px;
+            bottom: 0;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            border-radius: 25px;
+        }
+        
+        .photos-grid .photo-item:hover .photo-icons {
+            display: flex;
+        }
+        
+        .photo-icons .icon {
+            font-size: 20px;
+            color: white;
+            cursor: pointer;
+        }
+        
+
+        #filter-form{   
+             display: flex ;
+                justify-content: space-around;
+            }
+#filter-category , #filter-format , #filter-date , #load-more , #fc {
+            width:260px;
+height: 42px;
+padding: 11px 18px 11px 18px;
+gap: 0px;
+border-radius: 8px ;
+margin:20px;
+}
+#load-more{
+border: none;
+margin-left: 615px;
+}
+.photo-item {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+}
+
+.photo-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.photo-icons {
+    position: absolute;
+    top: 6px; /* Position en haut */
+    right: 6px; /* Position à droite */
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px; /* Carré avec coins légèrement arrondis */
+    cursor: pointer;
+    z-index: 2;
+    
+}
+
+.photo-icons:hover {
+    background: rgba(0, 0, 0, 0.8); /* Changement de couleur au survol */
+}
+
+.photo-icons .fullscreen-icon {
+    color: white;
+    font-size: 20px;
+    text-align: center;
+}
+
+.lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.lightbox-content {
+    position: relative;
+}
+
+#img_lightbox {
+    max-width: 90%;
+    max-height: 90%;
+    display: block;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: -49px;
+    right: -244px;
+    width: 50px;
+    height: 38px;
+    background:url(http://nathalie-mota.local/wp-content/uploads/2024/12/Vector.png) no-repeat;
+    border: none;
+}
+
+.lightbox_prev  {
+    background: url(http://nathalie-mota.local/wp-content/uploads/2024/12/Navigation-arrows-1.png) no-repeat;
+    width: 107px;
+    height: 18px;
+  transition: .3s;
+  border: none;
+  position: absolute;
+  top: 243px;
+  right: 677px;
+
+}
+.lightbox_next {
+    background: url(http://nathalie-mota.local/wp-content/uploads/2024/12/Navigation-arrows.png)no-repeat; 
+    width: 107px;
+    height: 18px;
+    transition: .3s;
+    position: absolute;
+    right: 277px;
+    border: none;
+    right: -180px;
+    top: 256px;
+    }
+    #img_lightbox{
+        width: 564px;
+    height: 495px;
+    object-fit: cover;
+    }
+.icons{
+    font-size: 64px;
+    position: absolute;
+    top: 198px;
+    right: 258px;
+}
+
+.photo-item .icons {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    color: black;
+    z-index: 3;
+}
+
+ .photo-item:hover .icons {
+    display: block;
+    opacity: 1;
+   
+}
+
+
+
+.photo-item img {
+    display: block;
+    transition: opacity 0.3s ease; /* Effet fluide pour la transparence de l'image */
+    position: relative;
+   
+}
+
+.photo-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fond noir semi-transparent */
+    opacity: 0; /* Caché par défaut */
+    transition: opacity 0.3s ease; /* Transition fluide pour l'apparition */
+    z-index: 2; /* Placé au-dessus de l'image */
+}
+
+.photo-item:hover::before {
+    opacity: 1
+}
+
+
+a{
+    color: black;
+    text-decoration: none;
+}
+.hero-image {
+    width: 100%;
+    height: 100vh;
+display: flex;
+align-items: center;
+justify-content: center;
+color: white;
+text-align: center;
+background-size: cover;
+}
+
+.hero a {
+    width: 100%;
+}
+
+
+.texte{
+    font-family: Space Mono;
+    font-size: 96px;
+    font-style: italic;
+    font-weight: 700;
+    line-height: 142.18px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    font-weight: bold;
+    text-align: center;
+    color: rgba(0, 0, 0, -3.9);
+    -webkit-text-stroke: 2px white;}
+
+   /* Styles pour la miniature */
+.thumbnail img {
+    width: 150px; /* Taille de la miniature */
+
+ 
+}
+
+

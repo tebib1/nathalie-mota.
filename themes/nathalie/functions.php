@@ -5,32 +5,111 @@ function theme_setup() {
         'primary' => __('Menu Principal', 'textdomain'), // Emplacement utilisé dans header.php
     ));
 }
-
-//inclure le fichier style
 add_action('after_setup_theme', 'theme_setup');
+
+
+// Inclure le fichier style principal
 function enqueue_theme_styles() {
     wp_enqueue_style('theme-style', get_stylesheet_uri());
 }
 add_action('wp_enqueue_scripts', 'enqueue_theme_styles');
 
-
+// Fonction unique pour inclure les scripts JS
 function enqueue_custom_scripts() {
-    wp_enqueue_script('custom-modal-script', get_stylesheet_directory_uri() . '/js/modal.js', array('jquery'), null, true);
-}
-add_action('wp_enqueue_scripts', 'enqueue_custom_scripts');
-   
-function nathalie_get_icon_svg( $type, $direction ) {
-    $icons = array(
-        'ui' => array(
-            'arrow_left' => '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M15.41 7.41L10.83 12l4.58 4.59L14 18l-6-6 6-6z"/></svg>',
-            'arrow_right' => '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>',
-        ),
+    // Inclure le script modal.js
+    wp_enqueue_script(
+        'custom-modal-script',
+        get_stylesheet_directory_uri() . '/js/modal.js',
+        array('jquery'), // Dépend de jQuery
+        null,
+        true // Charger dans le footer
     );
 
-    return $icons[ $type ][ $direction ] ?? '';
+    // Inclure le script catalogue.js
+    
+        wp_enqueue_script('catalogue-js', get_template_directory_uri() . '/js/catalogue.js', ['jquery'], null, true);
+        wp_localize_script('catalogue-js', 'ajaxurl', admin_url('admin-ajax.php'));
+    
+    // Inclure le script script.js
+    
+    wp_enqueue_script('script-js', get_template_directory_uri() . '/js/script.js', ['jquery'], null, true);
+
+
+    add_action('wp_enqueue_scripts', 'enqueue_catalogue_scripts');
+    
+
 }
+
+add_action('wp_enqueue_scripts', 'enqueue_custom_scripts');
+
+function theme_add_google_fonts() {
+    wp_enqueue_style('google-fonts', 'https://fonts.googleapis.com/css2?family=Space+Mono&display=swap', false);
+}
+add_action('wp_enqueue_scripts', 'theme_add_google_fonts');
+
+function get_photos_with_filters() {
+    // Récupérer les paramètres envoyés par AJAX
+    $category = sanitize_text_field($_POST['cateegorie']);
+    $format = sanitize_text_field($_POST['format']);
+    $date_order = sanitize_text_field($_POST['date']);
+    $page = intval($_POST['page']) ?: 1;
+
+    // Arguments pour WP_Query
+    $args = [
+        'post_type' => 'photo',
+        'posts_per_page' => 8,
+        'paged' => $page,
+        'orderby' => 'date',
+        'order' => $date_order ?: 'DESC',
+        'tax_query' => [],
+    ];
+
+    // Filtrer par catégorie
+    if (!empty($category)) {
+        $args['tax_query'][] = [
+            'taxonomy' => 'cateegorie',
+            'field' => 'slug',
+            'terms' => $category,
+        ];
+    }
+
+    // Filtrer par format
+    if (!empty($format)) {
+        $args['tax_query'][] = [
+            'taxonomy' => 'format',
+            'field' => 'slug',
+            'terms' => $format,
+        ];
+    }
+
+    // Récupérer les photos
+    $query = new WP_Query($args);
+
+    // Préparer les résultats
+    if ($query->have_posts()) {
+        while ($query->have_posts()) {
+            $query->the_post();
+            $image_url = get_the_post_thumbnail_url(get_the_ID());
+            $photo_title = get_the_title();
+            $imagePath = 'http://nathalie-mota.local/wp-content/uploads/2024/12/Icon_fullscreen.png';
+            $icon = 'http://nathalie-mota.local/wp-content/uploads/2025/01/Group-1.png';
+
+            echo '<div class="photo-item">';
+            echo '<a href="' . esc_url(get_permalink()) . '"><img src="' . esc_url($image_url) . '" alt="' . esc_attr($photo_title) . '"></a>';
+            echo '<div class="photo-icons" onclick="openLightbox(\'' . esc_url($image_url) . '\')"><img src="' . esc_url($imagePath) . '" alt="Icône"></div>';
+            echo '<a class="icons" href="' . esc_url(get_permalink()) . '"> <img  src="' . esc_url($icon) . '" alt="Icône"></a>';
+            echo '</div>';
+        }
+        wp_reset_postdata();
+    
+
+  
+    }
+
+    wp_die();
+}
+add_action('wp_ajax_get_photos', 'get_photos_with_filters');
+add_action('wp_ajax_nopriv_get_photos', 'get_photos_with_filters');
 
 
 ?>
-
-
