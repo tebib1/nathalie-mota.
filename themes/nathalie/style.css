@@ -567,6 +567,24 @@ body {
             width: 30px;
             height: 30px;
            }
+           .lightbox-close {
+            position: absolute;
+            top: 96px;
+            right: -52px;}
+           .lightbox_next {
+            width: 190px;
+            height: 25px;
+            position: absolute;
+            right: -175px;
+            top: 256px;
+        }
+        .lightbox_prev {
+            width: 99px;
+            height: 18px;
+            position: absolute;
+            top: 250px;
+            right:604px;
+        }
 }
   
   /* Styles pour les écrans de taille inférieure à 767px (mobile) */
@@ -608,6 +626,27 @@ body {
        .texte{
         font-size: 30px;
        }
+       #img_lightbox {
+        width: 315px;
+        height: 306px;}
+        .lightbox_next {
+            width: 190px;
+            height: 25px;
+            position: absolute;
+            right: -184px;
+            top: 153px;}
+            .lightbox_prev {
+                width: 99px;
+                height: 18px;
+                position: absolute;
+                top: 158px;
+                right: 331px;
+            }
+            .lightbox-close {
+                position: absolute;
+                top: 0px;
+                right: -49px;
+            }
        .photo-details {
         position: relative;
     margin-left: 0px;
