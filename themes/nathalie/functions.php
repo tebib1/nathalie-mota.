@@ -96,8 +96,8 @@ function get_photos_with_filters() {
 
             echo '<div class="photo-item">';
             echo '<a href="' . esc_url(get_permalink()) . '"><img src="' . esc_url($image_url) . '" alt="' . esc_attr($photo_title) . '"></a>';
-            echo '<div class="photo-icons" onclick="openLightbox(\'' . esc_url($image_url) . '\')"><img src="' . esc_url($imagePath) . '" alt="Icône"></div>';
-            echo '<a class="icons" href="' . esc_url(get_permalink()) . '"> <img  src="' . esc_url($icon) . '" alt="Icône"></a>';
+            echo '<div class="photo-icons" onclick="openLightbox(\'' . esc_url($image_url) . '\')"></div>';
+            echo '<a class="icons" href="' . esc_url(get_permalink()) . '"></a>';
             echo '</div>';
         }
         wp_reset_postdata();
@@ -110,6 +110,7 @@ function get_photos_with_filters() {
 }
 add_action('wp_ajax_get_photos', 'get_photos_with_filters');
 add_action('wp_ajax_nopriv_get_photos', 'get_photos_with_filters');
+
 
 
 ?>

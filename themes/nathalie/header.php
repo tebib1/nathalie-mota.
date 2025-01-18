@@ -25,7 +25,7 @@
                 ?>
             </nav>
             <!-- Inclure le modal -->
-<?php get_template_part('template-parts/modal-contact'); ?>
+            <?php get_template_part('template-parts/modal-contact'); ?>
 
         </div>
     </header>

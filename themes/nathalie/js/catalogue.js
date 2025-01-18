@@ -19,8 +19,16 @@ document.addEventListener('DOMContentLoaded', () => {
                     photoList.innerHTML = data; // Remplacer les photos actuelles
                 } else {
                     photoList.innerHTML += data; // Ajouter de nouvelles photos
+                
                 }
                 loadMoreButton.dataset.page = page + 1;
+                            // Vérifiez si la quantité de photos renvoyées est inférieure à posts_per_page
+            if (data.trim().length === 0) {
+                loadMoreButton.style.display = 'none'; // Cacher le bouton si plus de photos
+            } else {
+                loadMoreButton.style.display = 'block'; // Afficher le bouton si des photos sont présentes
+            }
+                
             });
         
     }
