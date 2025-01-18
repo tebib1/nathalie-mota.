@@ -585,6 +585,9 @@ body {
             top: 250px;
             right:604px;
         }
+        .related-item img {
+            width: 467px;
+          }
 }
   
   /* Styles pour les écrans de taille inférieure à 767px (mobile) */
@@ -623,9 +626,13 @@ body {
         height: 617px;
         padding: 0px;
        }
+          .related-item img {
+            width: 367px;
+          }
        .texte{
         font-size: 30px;
        }
+       
        #img_lightbox {
         width: 315px;
         height: 306px;}
