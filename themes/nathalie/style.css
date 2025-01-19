@@ -530,7 +530,61 @@ body {
     font-size: 16px;
     margin: 0;
   }
-  
+  .lightbox-info{
+    display: flex;
+    justify-content: space-between;
+    margin-right: 56px;
+  }
+  #lightbox-reference{
+    color: white;
+   
+  }
+  #lightbox-category{
+    color: white;
+    display: flex ;
+    align-items: center;
+  }
+  #lightbox-title{
+    color: white;
+    position: relative;
+    top: 7px;
+    left: 10px;
+    font-size: 14px;
+    font-weight: normal;
+  }
+  .photo-item {
+    position: relative;
+    overflow: hidden; /* Empêche les débordements */
+}
+
+.photo-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7); /* Fond semi-transparent */
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    opacity: 0; /* Masqué par défaut */
+    visibility: hidden; /* Invisible par défaut */
+    text-align: center;
+}
+
+.photo-item:hover .photo-overlay {
+    opacity: 1; /* Rendre visible au survol */
+    visibility: visible;
+}
+
+.photo-categories{
+   font-size: 14px;
+    position: relative;
+    top: 7px;
+    right: 10px;
+}
+
   /* Styles pour les écrans de taille inférieure à 768px (tablette) */
   @media (max-width: 1024px) {
     .single_photo {

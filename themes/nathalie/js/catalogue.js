@@ -92,23 +92,33 @@ let images = []; // Liste des URLs des images
 let currentImageIndex = 0; // Index actuel de l'image affichée
 
 function openLightbox(imageUrl) {
-
-    images = Array.from(document.querySelectorAll('#photo-list img')).map(img => img.src); // Récupère toutes les URLs des images affichées
+    // Récupère toutes les images affichées
+    images = Array.from(document.querySelectorAll('#photo-list img')).map(img => img.src);
     currentImageIndex = images.indexOf(imageUrl); // Trouve l'index de l'image cliquée
+
+    const currentImageElement = document.querySelector(`#photo-list img[src="${imageUrl}"]`);
+    const imageReference = currentImageElement.dataset.reference || 'Référence non disponible';
+    const imageCategory = currentImageElement.dataset.category || 'Catégorie non disponible';
 
     const lightbox = document.createElement('div');
     lightbox.classList.add('lightbox');
     lightbox.innerHTML = `
         <div class="lightbox-content">
             <img id="img_lightbox" src="${imageUrl}" alt="Lightbox Image">
+         
             <span class="lightbox-close" onclick="closeLightbox()"></span>
-            <button class="lightbox_next"onclick="nextImage()" ></button>
+            <button class="lightbox_next" onclick="nextImage()"></button>
             <button class="lightbox_prev" onclick="prevImage()"></button>
+               <div class="lightbox-info">
+                <p id="lightbox-reference"> ${imageReference}</p>
+                <p id="lightbox-category"> ${imageCategory}</p>
+            </div>
         </div>
     `;
     document.body.appendChild(lightbox);
     document.body.style.overflow = 'hidden'; // Désactive le scroll
 }
+
 
 function closeLightbox() {
     const lightbox = document.querySelector('.lightbox');
@@ -121,13 +131,35 @@ function closeLightbox() {
 function nextImage() {
     // Passer à l'image suivante dans le tableau, revenir au début si nécessaire
     currentImageIndex = (currentImageIndex + 1) % images.length;
+
+    // Mettre à jour l'image dans la lightbox
     const imgLightbox = document.getElementById('img_lightbox');
-    imgLightbox.src = images[currentImageIndex]; // Met à jour l'image dans la lightbox
+    imgLightbox.src = images[currentImageIndex];
+
+    // Mettre à jour la catégorie et la référence
+    const currentImageElement = document.querySelector(`#photo-list img[src="${images[currentImageIndex]}"]`);
+    const imageReference = currentImageElement.dataset.reference || 'Référence non disponible';
+    const imageCategory = currentImageElement.dataset.category || 'Catégorie non disponible';
+
+    // Mettre à jour les informations dans la lightbox
+    document.querySelector('.lightbox-info p:nth-child(1)').textContent = `${imageReference}`;
+    document.querySelector('.lightbox-info p:nth-child(2)').textContent = `${imageCategory}`;
 }
 
 function prevImage() {
     // Passer à l'image précédente dans le tableau, revenir à la dernière si nécessaire
     currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+
+    // Mettre à jour l'image dans la lightbox
     const imgLightbox = document.getElementById('img_lightbox');
-    imgLightbox.src = images[currentImageIndex]; // Met à jour l'image dans la lightbox
+    imgLightbox.src = images[currentImageIndex];
+
+    // Mettre à jour la catégorie et la référence
+    const currentImageElement = document.querySelector(`#photo-list img[src="${images[currentImageIndex]}"]`);
+    const imageReference = currentImageElement.dataset.reference || 'Référence non disponible';
+    const imageCategory = currentImageElement.dataset.category || 'Catégorie non disponible';
+
+    // Mettre à jour les informations dans la lightbox
+    document.querySelector('.lightbox-info p:nth-child(1)').textContent = `Référence : ${imageReference}`;
+    document.querySelector('.lightbox-info p:nth-child(2)').textContent = `Catégorie : ${imageCategory}`;
 }

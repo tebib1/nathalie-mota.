@@ -91,14 +91,33 @@ function get_photos_with_filters() {
             $query->the_post();
             $image_url = get_the_post_thumbnail_url(get_the_ID());
             $photo_title = get_the_title();
-            $imagePath = 'http://nathalie-mota.local/wp-content/uploads/2024/12/Icon_fullscreen.png';
-            $icon = 'http://nathalie-mota.local/wp-content/uploads/2025/01/Group-1.png';
+               // Récupérer la catégorie et la référence
+               $categories = wp_get_post_terms(get_the_ID(), 'cateegorie', ['fields' => 'names']);
+               $category = !empty($categories) ? $categories[0] : 'Catégorie non disponible';
+       
+               $reference = get_post_meta(get_the_ID(), 'Reference', true) ?: 'Référence non disponible';
 
-            echo '<div class="photo-item">';
-            echo '<a href="' . esc_url(get_permalink()) . '"><img src="' . esc_url($image_url) . '" alt="' . esc_attr($photo_title) . '"></a>';
-            echo '<div class="photo-icons" onclick="openLightbox(\'' . esc_url($image_url) . '\')"></div>';
-            echo '<a class="icons" href="' . esc_url(get_permalink()) . '"></a>';
-            echo '</div>';
+               echo '<div class="photo-item">';
+               echo '<a href="' . esc_url(get_permalink()) . '">';
+               echo '<img src="' . esc_url($image_url) . '" alt="' . esc_attr($photo_title) . '" ';
+               echo 'data-category="' . esc_attr($category) . '" ';
+               echo 'data-reference="' . esc_attr($reference) . '">';
+               echo '</a>';
+               echo '<div class="photo-icons" onclick="openLightbox(\'' . esc_url($image_url) . '\')"></div>';
+               echo '<a class="icons" href="' . esc_url(get_permalink()) . '"></a>';
+               echo '<div class="photo-overlay">';
+               echo '<h2 id="lightbox-title">' . esc_html($photo_title) . '</h2>';
+                // Afficher les catégories de la photo
+                if (!empty($categories)) {
+                    echo '<div class="photo-categories">';
+                    foreach ($categories as $category_name) {
+                        echo '<p class="category">' . esc_html($category_name) . '</p>';
+                    }
+                    echo '</div>';
+                    echo '</div>';
+                }
+                
+               echo '</div>';
         }
         wp_reset_postdata();
     
